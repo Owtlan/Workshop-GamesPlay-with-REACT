@@ -14,5 +14,13 @@
         "imageUrl": "https://www.ozone.bg/media/catalog/product/w/o/world-of-warcraft-battle-chest-box-pc.png",
         "summary": "The game primarily focuses on character progression, in which players earn experience points to level up their character to make them more powerful and buy and sell items using in-game currency to acquire better equipment, among other game systems.",
         "_id": "a7e5490f-b18a-4edc-9136-33aae9082dd0"
+    },
+    "3155a4ab-98e0-4d14-9159-29562ad6b28b": {
+        "title": "Fortnite",
+        "category": "MMORPG",
+        "maxLevel": "100",
+        "imageUrl": "https://cdn1.epicgames.com/offer/fn/EN_BXECO_33-00_Shooter_EGS_Launcher_Blade_2560x1440_2560x1440-36e1ff15dc00cd506986a2565764bbd3",
+        "summary": "Fortnite Battle Royale and its various modes are part of the overall Fortnite platform. The concept of the game is similar to previous games of the genre: 100 players skydive onto an island and scavenge for gear to defend themselves from other players. Players can fight alone, or with up to three other players.",
+        "_id": "3155a4ab-98e0-4d14-9159-29562ad6b28b"
     }
 }
