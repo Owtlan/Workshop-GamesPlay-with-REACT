@@ -1,21 +1,9 @@
-import { useEffect, useState } from 'react';
-
-import * as gamesAPI from '../../api/games-api'
-
+import { useGetAllGames } from '../../hooks/useGames';
 import GameListItem from './game-list-item/GameListItem';
 
 
 export default function GameList() {
-    const [games, setGames] = useState([]);
-
-    useEffect(() => {
-        (async () => {
-            const result = await gamesAPI.getAll()
-
-            setGames(result)
-        })()
-    }, []);
-
+    const [games] = useGetAllGames();
 
     return (
         <section id="catalog-page">
