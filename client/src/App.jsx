@@ -16,6 +16,9 @@ function App() {
     const [authState, setAuthState] = useState({});
 
     const changeAuthState = (state) => {
+
+        localStorage.setItem('accessToken', state.accessToken);
+
         setAuthState(state);
     }
 
@@ -40,7 +43,7 @@ function App() {
                         <Route path='/register' element={<Register />} />
                         <Route path='/games' element={<GameList />} />
                         <Route path='games/:gameId/details' element={<GameDetails />} />
-                        <Route path='/games/create' element={<GameCreate />} />
+                        <Route path='/game/create' element={<GameCreate />} />
                     </Routes>
                 </main>
 
