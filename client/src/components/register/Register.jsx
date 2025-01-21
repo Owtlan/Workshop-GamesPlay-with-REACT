@@ -21,7 +21,7 @@ export default function Register() {
 
             navigate('/');
         } catch (err) {
-            console.log(err.message);
+            setError(err.message)
         }
     }
 
@@ -49,7 +49,7 @@ export default function Register() {
 
                     {error && (
                         <p>
-                            <span>{error}</span>
+                            <span style={{ fontSize: '24px', color: 'red', textAlign: 'center' }}>{error}</span>
                         </p>
 
                     )}
