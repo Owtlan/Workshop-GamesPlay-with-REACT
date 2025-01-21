@@ -24,12 +24,13 @@ export const useRegister = () => {
     const { changeAuthState } = useContext(AuthContext);
 
     const registerHandler = async (email, password) => {
-        const result = await register(email, password)
+        const result = await register(email, password); // Връща целия резултат от сървъра
 
+        // Задайте състоянието с резултата (например: { _id, email, accessToken })
         changeAuthState(result);
 
-        return result;
-    }
+        return result; // Върнете резултата
+    };
 
     return registerHandler;
 }
