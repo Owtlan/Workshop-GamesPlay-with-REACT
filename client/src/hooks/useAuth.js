@@ -1,7 +1,5 @@
-import { useContext } from "react";
 
-
-import { login, register } from "../api/auth-api";
+import { login, register, logout } from "../api/auth-api";
 import { useAuthContext } from "../contexts/AuthContext";
 
 
@@ -21,16 +19,29 @@ export const useLogin = () => {
 };
 
 export const useRegister = () => {
-    const { changeAuthState } = useContext(AuthContext);
+    const { changeAuthState } = useAuthContext();
 
     const registerHandler = async (email, password) => {
-        const result = await register(email, password); // Връща целия резултат от сървъра
+        const result = await register(email, password);
 
-        // Задайте състоянието с резултата (например: { _id, email, accessToken })
+
         changeAuthState(result);
 
-        return result; // Върнете резултата
+        return result;
     };
 
     return registerHandler;
+}
+
+
+export const useLogout = () => {
+    const { logout: localLogout } = useAuthContext();
+
+    const logoutHandler = async () => {
+        await logout();
+        localLogout()
+
+    };
+
+    return logoutHandler;
 }
