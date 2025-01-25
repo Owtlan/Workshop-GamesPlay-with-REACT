@@ -9,7 +9,7 @@ export const useLogin = () => {
 
     const loginHandler = async (email, password) => {
         const result = await login(email, password)
-
+        // console.log('API Response:', result);
         changeAuthState(result);
 
         return result;
@@ -38,8 +38,8 @@ export const useLogout = () => {
     const { logout: localLogout } = useAuthContext();
 
     const logoutHandler = async () => {
-        await logout();
         localLogout()
+        await logout();
 
     };
 
