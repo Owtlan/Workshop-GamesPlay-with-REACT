@@ -11,8 +11,9 @@ const initialValues = {
 
 export default function GameDetails() {
     const { gameId } = useParams()
-    const [comments, setComments] = useGetAllComments(gameId)
+    const [comments, dispatch] = useGetAllComments(gameId)
     const createComment = useCreateComment()
+    const { email, userId } = useAuthContext()
     const [game] = useGetOneGames(gameId)
     const { isAuthenticated } = useAuthContext()
 
@@ -20,9 +21,18 @@ export default function GameDetails() {
         changeHandler,
         submitHandler,
         values,
-    } = useForm(initialValues, ({ comment }) => {
-        createComment(gameId, comment);
+    } = useForm(initialValues, async ({ comment }) => {
+        try {
+            const newComment = await createComment(gameId, comment);
+
+            // setComments(oldComments => [...oldComments, newComment])
+            dispatch({ type: 'ADD_COMMENT', payload: { ...newComment, author: { email } } })
+        } catch (err) {
+            console.log(err.message);
+        }
     })
+
+    const isOwner = userId === game._ownerId;
 
     return (
         <section id="game-details">
@@ -45,7 +55,7 @@ export default function GameDetails() {
                     <ul>
                         {comments.map(comment => (
                             <li key={comment._id} className="comment">
-                                <p>Username: {comment.text}</p>
+                                <p>{comment.author.email}: {comment.text}</p>
                             </li>
                         ))
                         }
@@ -54,10 +64,12 @@ export default function GameDetails() {
 
                 </div>
 
-                {/* <div className="buttons">
-                    <a href="#" className="button">Edit</a>
-                    <a href="#" className="button">Delete</a>
-                </div> */}
+                {isOwner && (
+                    <div className="buttons">
+                        <a href="#" className="button">Edit</a>
+                        <a href="#" className="button">Delete</a>
+                    </div>
+                )}
             </div>
 
 
