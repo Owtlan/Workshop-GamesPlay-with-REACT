@@ -12,6 +12,8 @@ import GameList from './components/game-list/GameList'
 import GameCreate from './components/game-create/GameCreate'
 import GameDetails from './components/game-details/GameDetails'
 import Logout from './components/logout/Logout'
+import GameEdit from './components/game-edit/GameEdit'
+import RouteGuard from './components/common/AuthenticatedGuard'
 
 function App() {
     return (
@@ -28,7 +30,12 @@ function App() {
                         <Route path='/logout' element={<Logout />} />
                         <Route path='/games' element={<GameList />} />
                         <Route path='games/:gameId/details' element={<GameDetails />} />
-                        <Route path='/game/create' element={<GameCreate />} />
+                        <Route path='games/:gameId/edit' element={<GameEdit />} />
+                        <Route path='/game/create' element={(
+                            <RouteGuard>
+                                <GameCreate />
+                            </RouteGuard>
+                        )} />
                     </Routes>
                 </main>
 
